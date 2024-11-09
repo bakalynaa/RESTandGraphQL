@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL vs REST</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GraphQL vs REST API</h1>
+        <p>A comparison of GraphQL and REST APIs for managing movie data</p>
+    </header>
+    <main>
+        <div class="api-section" id="graphql-section">
+            <h2>GraphQL API</h2>
+            <ul id="graphql-movies"></ul>
+            <button onclick="fetchGraphQLMovies()">Fetch Movies (GraphQL)</button>
+        </div>
+
+        <div class="api-section" id="rest-section">
+            <h2>REST API</h2>
+            <ul id="rest-movies"></ul>
+            <button onclick="fetchRESTMovies()">Fetch Movies (REST)</button>
+            <form id="movie-form">
+                <input type="text" id="title" placeholder="Movie Title" required>
+                <input type="text" id="director" placeholder="Director" required>
+                <input type="number" id="year" placeholder="Year" required>
+                <button type="submit">Add Movie (REST)</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
