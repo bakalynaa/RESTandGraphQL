@@ -37,12 +37,12 @@ async function fetchGraphQLMovies() {
 // REST: Fetch movies
 async function fetchRESTMovies() {
     try {
-        const response = await fetch('/api/movies');
+        const response = await fetch('http://localhost:8000/api/movies');
         const movies = await response.json();
         restMovieList.innerHTML = '';
         movies.forEach(movie => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${movie.title} (${movie.release_date}), rated ${movie.vote_average}`;
+            listItem.textContent = `${movie.title} (${movie.year}), directed by ${movie.director}`;
             restMovieList.appendChild(listItem);
         });
     } catch (error) {
@@ -50,22 +50,23 @@ async function fetchRESTMovies() {
     }
 }
 
-// REST: Add movie
-movieForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// REST: Add a new movie
+movieForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
     const title = document.getElementById('title').value;
     const director = document.getElementById('director').value;
     const year = document.getElementById('year').value;
 
     try {
-        await fetch('/api/movies', {
+        await fetch('http://localhost:8000/api/movies', { // Updated URL here
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, director, release_date: year }),
+            body: JSON.stringify({ title, director, year })
         });
-        fetchRESTMovies();  // Update movie list
-        movieForm.reset();  // Clear form
+        movieForm.reset();
+        fetchRESTMovies(); // Update REST list after adding
     } catch (error) {
-        console.error('Error adding movie:', error);
+        console.error('Error adding movie (REST):', error);
     }
 });
+
