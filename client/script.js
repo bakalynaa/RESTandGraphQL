@@ -5,7 +5,7 @@ const movieForm = document.getElementById('movie-form');
 // GraphQL: Fetch movies
 async function fetchGraphQLMovies() {
     try {
-        const response = await fetch('/graphql', {
+        const response = await fetch('http://localhost:8000/graphql', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -37,7 +37,7 @@ async function fetchGraphQLMovies() {
 // REST: Fetch movies
 async function fetchRESTMovies() {
     try {
-        const response = await fetch('/api/movies');
+        const response = await fetch('http://localhost:8000/api/movies');
         const movies = await response.json();
         restMovieList.innerHTML = '';
         movies.forEach(movie => {
